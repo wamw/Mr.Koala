@@ -1,0 +1,264 @@
+#%RAML 1.0
+title: Sample
+description: サンプルだおー
+version: 1.0.0
+baseUri: 'http://example.com'
+schemas:
+  UserList: |-
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "UserList",
+      "description": "",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "username",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "username": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  User: |-
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "User",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      },
+      "required": [
+        "username",
+        "password"
+      ]
+    }
+  Hoge: |-
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "hoge"
+    }
+  teaList: |-
+    {
+      "type": "array",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "description": "",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "title": ""
+    }
+/users:
+  description: ユーザー一覧を返すよ。
+  get:
+    description: ''
+    queryParameters:
+      page:
+        description: ''
+        type: integer
+        default: 1
+        example: 2
+    responses:
+      '200':
+        headers:
+          Link:
+            description: ''
+            type: string
+            example: >-
+              <https://example.com/users&page=1>; rel="prev",
+              <https://example.com/users&page=3>; rel="next"
+        body:
+          application/json:
+            description: ''
+            schema: UserList
+            example: |-
+              [
+                {
+                  "id": 1,
+                  "username": "nicol",
+                  "created_at": "2000-01-01T00:00:00.000Z",
+                  "updated_at": "2000-01-01T00:00:00.000Z"
+                },
+                {
+                  "id": 2,
+                  "username": "nick",
+                  "created_at": "2000-01-01T00:00:00.000Z",
+                  "updated_at": "2000-01-01T00:00:00.000Z"
+                }
+
+              ]
+  post:
+    description: ''
+    body:
+      application/json:
+        description: ''
+        schema: User
+        example: |2-
+            {
+              "id": 100000,
+              "username": "jack",
+              "password": "hogehoge",
+              "created_at": "2000-01-01T00:00:00.000Z",
+              "updated_at": "2000-01-01T00:00:00.000Z"
+            }
+    responses:
+      '201':
+        body:
+          application/json:
+            description: ''
+            schema: User
+            example: |2-
+                {
+                  "id": 100000,
+                  "username": "jack",
+                  "password": "hogehoge",
+                  "created_at": "2000-01-01T00:00:00.000Z",
+                  "updated_at": "2000-01-01T00:00:00.000Z"
+                }
+'/users/{id}':
+  description: ''
+  delete:
+    description: ''
+    responses:
+      '204': {}
+  get:
+    description: ''
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: User
+            example: |2-
+                {
+                  "id": 100000,
+                  "username": "jack",
+                  "password": "hogehoge",
+                  "created_at": "2000-01-01T00:00:00.000Z",
+                  "updated_at": "2000-01-01T00:00:00.000Z"
+                }
+  put:
+    description: ''
+    body:
+      application/json:
+        description: ''
+        schema: User
+        example: |2-
+            {
+              "id": 100000,
+              "username": "jack",
+              "password": "hogehoge",
+              "created_at": "2000-01-01T00:00:00.000Z",
+              "updated_at": "2000-01-01T00:00:00.000Z"
+            }
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: User
+            example: |2-
+                {
+                  "id": 100000,
+                  "username": "jack",
+                  "password": "hogehoge",
+                  "created_at": "2000-01-01T00:00:00.000Z",
+                  "updated_at": "2000-01-01T00:00:00.000Z"
+                }
+/hoge:
+  description: ''
+  get:
+    description: ''
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: Hoge
+            example: |-
+              {
+                "value": 1000
+              }
+/teas:
+  description: お茶の一覧
+  get:
+    description: ''
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: teaList
+            example: |-
+              [
+                  {
+                    "id": 1,
+                    "name": "ウーロン茶"
+                  },
+                  {
+                    "id": 2,
+                    "name": "ジャスミン茶"
+                  }
+              ]

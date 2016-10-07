@@ -1,0 +1,24 @@
+{
+  "name": "mr-koala",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/mr-koala.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node-dev example/index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^4.7.7",
+    "es6-class-mixin": "^1.0.5",
+    "koa": "^1.2.4",
+    "koa-bodyparser": "^2.2.0",
+    "koa-route": "^2.4.2",
+    "raml-1-parser": "^1.1.4",
+    "require-directory": "^2.1.1"
+  },
+  "devDependencies": {
+    "node-dev": "^3.1.3"
+  }
+}
