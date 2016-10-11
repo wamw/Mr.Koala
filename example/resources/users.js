@@ -14,10 +14,6 @@ resources.override('/users/:id', 'get', {
 
 
 resources.override('/users', 'post', {
-  * request(context, data) {
-    console.log(data);
-  }
-
   * response(context) {
     return {
       id: 99999,
