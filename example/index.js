@@ -5,20 +5,19 @@ const path = require('path'),
 
 koala.auth.ignores = ['/users/:id'];
 koala.auth.method = 'basic';
-koala.auth.handler = function(username, cb) {
-  if (username === 'hoge') {
-    return cb(null, {name: 'ohtani'}, 'fuga');
+koala.auth.handler = function(username, password, cb) {
+  if (username === 'hoge' && password === 'fuga') {
+    return cb(null, {name: 'ohtani'});
   }
   return cb(null, false);
-};
-
+}
 // koala.auth.method = 'digest';
-// koala.auth.handler = function(username, password, cb) {
-//   if (username === 'hoge' && password === 'fuga') {
-//     return cb(null, {name: 'ohtani'});
+// koala.auth.handler = function(username, cb) {
+//   if (username === 'hoge') {
+//     return cb(null, {name: 'ohtani'}, 'fuga');
 //   }
 //   return cb(null, false);
-// }
+// };
 
 
 const mr = koala(
