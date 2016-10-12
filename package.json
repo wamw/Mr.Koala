@@ -5,7 +5,7 @@
   "main": "lib/mr-koala.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "node-dev example/index.js"
+    "watch": "nodemon example/index.js"
   },
   "author": "",
   "license": "MIT",
@@ -16,12 +16,12 @@
     "koa-bodyparser": "^2.2.0",
     "koa-passport": "^1.3.0",
     "koa-route": "^2.4.2",
-    "nodemon": "^1.11.0",
     "passport-http": "^0.3.0",
     "raml-1-parser": "^1.1.4",
     "require-directory": "^2.1.1"
   },
   "devDependencies": {
-    "node-dev": "^3.1.3"
+    "koa-logger": "^1.3.0",
+    "nodemon": "^1.11.0"
   }
 }
