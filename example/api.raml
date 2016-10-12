@@ -3,6 +3,10 @@ title: Sample
 description: サンプルだおー
 version: 1.0.0
 baseUri: 'http://example.com'
+securedBy: [basic]
+securitySchemes:
+  basic:
+    type: Basic Authentication
 schemas:
   UserList: |-
     {
