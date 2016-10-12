@@ -1,9 +1,12 @@
 const path = require('path'),
-      koala = require('../lib/mr-koala');
+      koala = require('../lib/mr-koala'),
+      logger = require('koa-logger');
 
 const mr = koala(
   path.dirname(__filename) + '/api.raml',
   {resources: path.dirname(__filename) + '/resources'}
 );
 
-mr.listen(8000);
+mr.use(logger());
+
+mr.listen(9000);
