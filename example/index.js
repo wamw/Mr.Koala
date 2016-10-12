@@ -3,27 +3,25 @@ const path = require('path'),
       logger = require('koa-logger');
 
 
+const mr = koala(
+  path.dirname(__filename) + '/api.raml',
+  {resources: path.dirname(__filename) + '/resources'}
+);
+
+
 koala.auth.ignores = ['/users/:id'];
-koala.auth.method = 'basic';
-koala.auth.handler = function(username, password, cb) {
+koala.auth.handlers.basic = function(username, password, cb) {
   if (username === 'hoge' && password === 'fuga') {
     return cb(null, {name: 'ohtani'});
   }
   return cb(null, false);
 }
-// koala.auth.method = 'digest';
-// koala.auth.handler = function(username, cb) {
-//   if (username === 'hoge') {
-//     return cb(null, {name: 'ohtani'}, 'fuga');
-//   }
-//   return cb(null, false);
-// };
-
-
-const mr = koala(
-  path.dirname(__filename) + '/api.raml',
-  {resources: path.dirname(__filename) + '/resources'}
-);
+koala.auth.handlers.digest = function(username, cb) {
+  if (username === 'hoge') {
+    return cb(null, {name: 'ohtani'}, 'fuga');
+  }
+  return cb(null, false);
+};
 
 mr.use(logger());
 

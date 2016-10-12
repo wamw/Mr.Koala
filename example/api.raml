@@ -3,10 +3,14 @@ title: Sample
 description: サンプルだおー
 version: 1.0.0
 baseUri: 'http://example.com'
-securedBy: [basic]
+securedBy:
+  - basic
+  - digest
 securitySchemes:
   basic:
     type: Basic Authentication
+  digest:
+    type: Digest Authentication
 schemas:
   UserList: |-
     {
