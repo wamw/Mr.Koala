@@ -6,11 +6,14 @@ baseUri: 'http://example.com'
 securedBy:
   - basic
   - digest
+  - jwt
 securitySchemes:
   basic:
     type: Basic Authentication
   digest:
     type: Digest Authentication
+  jwt:
+    type: x-jwt
 schemas:
   UserList: |-
     {
