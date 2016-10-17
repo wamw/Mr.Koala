@@ -8,10 +8,10 @@ securedBy:
   # - digest
   - jwt
 securitySchemes:
-  # basic:
-  #   type: Basic Authentication
-  # digest:
-  #   type: Digest Authentication
+  basic:
+    type: Basic Authentication
+  digest:
+    type: Digest Authentication
   jwt:
     type: x-jwt
     # describedBy:
@@ -135,9 +135,10 @@ schemas:
     }
 /users:
   description: ユーザー一覧を返すよ。
+  securedBy:
+   - basic
+   - jwt
   get:
-    securedBy:
-      - jwt
     description: ''
     queryParameters:
       page:
