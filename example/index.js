@@ -12,13 +12,19 @@ const mr = koala(
 koala.auth.ignores = ['/users/:id'];
 koala.auth.handlers.basic = function(username, password, cb) {
   if (username === 'hoge' && password === 'fuga') {
-    return cb(null, {name: 'ohtani'});
+    return cb(null, {name: 'hoge'});
   }
   return cb(null, false);
 }
 koala.auth.handlers.digest = function(username, cb) {
   if (username === 'hoge') {
-    return cb(null, {name: 'ohtani'}, 'fuga');
+    return cb(null, {name: 'hoge'}, 'fuga');
+  }
+  return cb(null, false);
+};
+koala.auth.handlers.jwt = function(jwt_payload, cb) {
+  if (jwt_payload.name === 'hoge') {
+    return cb(null, {name: 'hoge'});
   }
   return cb(null, false);
 };
