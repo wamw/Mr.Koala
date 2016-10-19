@@ -4,8 +4,8 @@ description: サンプルだおー
 version: 1.0.0
 baseUri: 'http://example.com'
 securedBy:
-  - basic
-  - digest
+  # - basic
+  # - digest
   - jwt
 securitySchemes:
   basic:
@@ -135,6 +135,9 @@ schemas:
     }
 /users:
   description: ユーザー一覧を返すよ。
+  securedBy:
+   - basic
+   - jwt
   get:
     description: ''
     queryParameters:
@@ -207,6 +210,8 @@ schemas:
     responses:
       '204': {}
   get:
+    securedBy:
+      - null
     description: ''
     responses:
       '200':

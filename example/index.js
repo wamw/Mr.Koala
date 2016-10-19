@@ -9,7 +9,6 @@ const mr = koala(
 );
 
 
-koala.auth.ignores = ['/users/:id'];
 koala.auth.handlers.basic = function(username, password, cb) {
   if (username === 'hoge' && password === 'fuga') {
     return cb(null, {name: 'hoge'});
