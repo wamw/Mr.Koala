@@ -5,7 +5,7 @@ services:
   app:
     build: .
     container_name: koala-server
-    command: npm run watch
+    command: npm run serve
     volumes:
       - ./example:/src/example
       - ./lib:/src/lib
