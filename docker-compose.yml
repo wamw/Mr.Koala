@@ -1,0 +1,14 @@
+---
+version: '2'
+
+services:
+  app:
+    build: .
+    container_name: koala-server
+    command: npm run watch
+    volumes:
+      - ./example:/src/example
+      - ./lib:/src/lib
+      - ./package.json:/src/package.json
+    ports:
+      - 9000:9000
