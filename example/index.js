@@ -4,7 +4,7 @@ const path = require('path'),
 
 
 const mr = koala(
-  path.dirname(__filename) + '/api.raml',
+  'http://spec.wamw.jp/-KUapDjNDbpa5mw6GgcC/raml/1.0',
   {resources: path.dirname(__filename) + '/resources'}
 );
 
