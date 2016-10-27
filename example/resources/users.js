@@ -1,8 +1,17 @@
-const resources = require('../../lib/mr-koala').resources;
+const auth = require('../../lib/mr-koala').auth,
+      resources = require('../../lib/mr-koala').resources;
+
+
+resources.override('/token', 'post', {
+  * response(context) {
+    return { token: auth.jwtSign({ username: 'hoge' }) };
+  }
+});
 
 
 resources.override('/users/:id', 'get', {
   * response(context) {
+
     return {
       id: 99999,
       username: 'jackkkkkkk',
