@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/mr-koala.js",
   "scripts": {
-    "test": "abao http://spec.wamw.jp/-KSkQFlChRMrSKoozi2N/raml08 --server http://localhost:9000 -h \"Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiaG9nZSJ9.X2rQkLTePEDmlwQpfV2k-FnA8S4o3aveuRGw__gqV-4\"",
+    "test": "abao http://spec.wamw.jp/-KSkQFlChRMrSKoozi2N/raml08 --server http://app:9000 -h \"Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiaG9nZSJ9.X2rQkLTePEDmlwQpfV2k-FnA8S4o3aveuRGw__gqV-4\"",
     "serve": "nodemon example/index.js"
   },
   "author": "",
@@ -12,6 +12,7 @@
   "dependencies": {
     "ajv": "^4.7.7",
     "es6-class-mixin": "^1.0.5",
+    "jsonwebtoken": "^7.1.9",
     "koa": "^1.2.4",
     "koa-bodyparser": "^2.2.0",
     "koa-passport": "^1.3.0",
