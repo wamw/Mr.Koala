@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/mr-koala.js",
   "scripts": {
-    "test": "abao http://spec.wamw.jp/-KSkQFlChRMrSKoozi2N/raml08 --server http://app:9000 -h \"Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiaG9nZSJ9.X2rQkLTePEDmlwQpfV2k-FnA8S4o3aveuRGw__gqV-4\"",
+    "test": "abao ./example/api08.raml --server http://localhost:9000 -h \"Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImhvZ2UiLCJpYXQiOjE0Nzc2MzE3MTF9.TTjq4YPpiuLF-9GXiNsKpAs7C7qlqkAu43ZWjjOMXjI\"",
     "serve": "nodemon example/index.js"
   },
   "author": "",
