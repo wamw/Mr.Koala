@@ -7,7 +7,7 @@ const mr = koala(
   'http://spec.wamw.jp/-KUapDjNDbpa5mw6GgcC/raml/1.0',
   {
       resources: path.dirname(__filename) + '/resources',
-      secretKey: 'ppap'
+      secretKey: 'xxxx'
   }
 );
 
@@ -25,8 +25,8 @@ koala.auth.handlers.digest = function(username, cb) {
   return cb(null, false);
 };
 koala.auth.handlers.jwt = function(jwt_payload, cb) {
-  if (jwt_payload.name === 'hoge') {
-    return cb(null, {name: 'hoge'});
+  if (jwt_payload.username === 'hoge') {
+    return cb(null, {username: 'hoge'});
   }
   return cb(null, false);
 };
