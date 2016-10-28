@@ -24,6 +24,7 @@ resources.override('/users/:id', 'get', {
 
 resources.override('/users', 'post', {
   * response(context) {
+    context.status = 201;
     return {
       id: 99999,
       username: 'jackkkkkkk',
