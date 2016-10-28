@@ -1,0 +1,387 @@
+#%RAML 0.8
+title: Example
+version: 1.0.0
+baseUri: 'http://example.com'
+securitySchemes:
+  - JWT:
+      type: x-jwt
+      description: ''
+      describedBy:
+        headers:
+          Authorization:
+            type: string
+      settings:
+        x-jwt-header:
+          x-jwt-typ: JWT
+          x-jwt-alg: HS256
+        x-jwt-payload: {}
+securedBy:
+  - JWT
+schemas:
+  - User: |-
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "User",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "id",
+            "description": "",
+            "type": "integer",
+            "example": 1
+          },
+          "username": {
+            "title": "username",
+            "description": "",
+            "type": "string",
+            "example": "jack"
+          },
+          "created_at": {
+            "title": "created_at",
+            "description": "",
+            "type": "string",
+            "example": "2000-01-01T00:00:00.000Z"
+          },
+          "updated_at": {
+            "title": "updated_at",
+            "description": "",
+            "type": "string",
+            "example": "2000-01-01T00:00:00.000Z"
+          }
+        },
+        "required": [
+          "id",
+          "username",
+          "created_at",
+          "updated_at"
+        ],
+        "example": {
+          "created_at": "2000-01-01T00:00:00.000Z",
+          "id": 1,
+          "updated_at": "2000-01-01T00:00:00.000Z",
+          "username": "jack"
+        }
+      }
+  - UserList: |-
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "UserList",
+        "description": "",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "id",
+              "description": "",
+              "type": "integer",
+              "example": 2
+            },
+            "username": {
+              "title": "username",
+              "description": "",
+              "type": "string",
+              "example": "nick"
+            },
+            "created_at": {
+              "title": "created_at",
+              "description": "",
+              "type": "string",
+              "example": "2000-01-01T00:00:00.000Z"
+            },
+            "updated_at": {
+              "title": "updated_at",
+              "description": "",
+              "type": "string",
+              "example": "2000-01-01T00:00:00.000Z"
+            }
+          },
+          "required": [
+            "id",
+            "username",
+            "created_at",
+            "updated_at"
+          ],
+          "example": [
+            {
+              "created_at": "2000-01-01T00:00:00.000Z",
+              "id": 1,
+              "updated_at": "2000-01-01T00:00:00.000Z",
+              "username": "jack"
+            },
+            {
+              "created_at": "2000-01-01T00:00:00.000Z",
+              "id": 2,
+              "updated_at": "2000-01-01T00:00:00.000Z",
+              "username": "nick"
+            }
+          ]
+        }
+      }
+  - UserCreation: |-
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "UserCreation",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "username": {
+            "title": "username",
+            "description": "",
+            "type": "string",
+            "example": "jack"
+          },
+          "password": {
+            "title": "password",
+            "description": "",
+            "type": "string",
+            "example": "hogehoge"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ],
+        "example": {
+          "password": "hogehoge",
+          "username": "jack"
+        }
+      }
+  - Image: |-
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Image",
+        "description": "",
+        "type": "string"
+      }
+  - ImageURL: |-
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "ImageURL",
+        "description": "",
+        "type": "string",
+        "example": "http://image.example.com/xxxxx.jpeg"
+      }
+/users:
+  description: ''
+  get:
+    description: ''
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: UserList
+            example: |-
+              [
+                {
+                  "created_at": "2000-01-01T00:00:00.000Z",
+                  "id": 1,
+                  "updated_at": "2000-01-01T00:00:00.000Z",
+                  "username": "jack"
+                },
+                {
+                  "created_at": "2000-01-01T00:00:00.000Z",
+                  "id": 2,
+                  "updated_at": "2000-01-01T00:00:00.000Z",
+                  "username": "nick"
+                }
+              ]
+  post:
+    description: ''
+    body:
+      application/json:
+        description: ''
+        schema: UserCreation
+        example: |-
+          {
+            "password": "hogehoge",
+            "username": "jack"
+          }
+    responses:
+      '201':
+        body:
+          application/json:
+            description: ''
+            schema: User
+            example: |-
+              {
+                "created_at": "2000-01-01T00:00:00.000Z",
+                "id": 1,
+                "updated_at": "2000-01-01T00:00:00.000Z",
+                "username": "jack"
+              }
+'/users/{id}':
+  description: ''
+  delete:
+    description: ''
+    responses:
+      '204':
+        body:
+          application/json:
+            description: ''
+  get:
+    description: ''
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: User
+            example: |-
+              {
+                "created_at": "2000-01-01T00:00:00.000Z",
+                "id": 1,
+                "updated_at": "2000-01-01T00:00:00.000Z",
+                "username": "jack"
+              }
+  patch:
+    description: ''
+    body:
+      application/json:
+        description: ''
+        schema: UserCreation
+        example: |-
+          {
+            "password": "hogehoge",
+            "username": "jack"
+          }
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: User
+            example: |-
+              {
+                "created_at": "2000-01-01T00:00:00.000Z",
+                "id": 1,
+                "updated_at": "2000-01-01T00:00:00.000Z",
+                "username": "jack"
+              }
+  put:
+    description: ''
+    body:
+      application/json:
+        description: ''
+        schema: UserCreation
+        example: |-
+          {
+            "password": "hogehoge",
+            "username": "jack"
+          }
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: User
+            example: |-
+              {
+                "created_at": "2000-01-01T00:00:00.000Z",
+                "id": 1,
+                "updated_at": "2000-01-01T00:00:00.000Z",
+                "username": "jack"
+              }
+'/users/{id}/image':
+  description: ''
+  delete:
+    description: ''
+    responses:
+      '204':
+        body:
+          application/json:
+            description: ''
+  get:
+    description: ''
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: ImageURL
+            example: '"http://image.example.com/xxxxx.jpeg"'
+  patch:
+    description: ''
+    body:
+      image/jpeg:
+        description: ''
+        schema: Image
+      image/png:
+        description: ''
+        schema: Image
+      image/gif:
+        description: ''
+        schema: Image
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: ImageURL
+            example: '"http://image.example.com/xxxxx.jpeg"'
+  post:
+    description: ''
+    body:
+      image/jpeg:
+        description: ''
+        schema: Image
+      image/png:
+        description: ''
+        schema: Image
+      image/gif:
+        description: ''
+        schema: Image
+    responses:
+      '201':
+        body:
+          application/json:
+            description: ''
+            schema: ImageURL
+            example: '"http://image.example.com/xxxxx.jpeg"'
+  put:
+    description: ''
+    body:
+      image/jpeg:
+        description: ''
+        schema: Image
+      image/png:
+        description: ''
+        schema: Image
+      image/gif:
+        description: ''
+        schema: Image
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: ImageURL
+            example: '"http://image.example.com/xxxxx.jpeg"'
+/token:
+  description: ''
+  post:
+    description: ''
+    body:
+      application/json:
+        description: ''
+        schema: UserCreation
+        example: |-
+          {
+            "password": "hogehoge",
+            "username": "jack"
+          }
+    responses:
+      '200':
+        body:
+          application/json:
+            description: ''
+            schema: UserCreation
+            example: |-
+              {
+                "password": "hogehoge",
+                "username": "jack"
+              }
+  securedBy:
+    - null
